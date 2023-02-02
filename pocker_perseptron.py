@@ -6,7 +6,7 @@ from perceptron import Perceptron
 if __name__ == '__main__':
 
     p = Perceptron()
-    # p.find_the_best_weights()
+    p.find_the_best_weights()
 
     # For Train
     train_colors = []
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     x = linspace(-3, 3, 100)
     y = (p.W[1] * x) / p.W[2] + p.W[0] / p.W[2]
-    plt.plot(x, y, '-r', color='green')
+    plt.plot(x, y, color='green')
 
     plt.show()
 
@@ -48,6 +48,12 @@ if __name__ == '__main__':
 
     x = linspace(-2, 2, 100)
     y = (p.W[1] * x) / p.W[2] + p.W[0] / p.W[2]
-    plt.plot(x, y, '-r', color='green')
+    plt.plot(x, y, color='green')
 
     plt.show()
+
+    err_train = p.accuracy_on_training()
+    err_test = p.accuracy_on_testing()
+
+    print("Number of misclassified data in train part: ", err_train)
+    print("Number of misclassified data in test part: ", err_test)

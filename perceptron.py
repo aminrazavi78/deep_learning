@@ -58,7 +58,19 @@ class Perceptron:
                     self.W[2] += alpha * self.X2_train[i] * self.Label_train[i]
 
     def accuracy_on_training(self):
-        pass
+        # just number of misclassified data
+        misclassified = 0
+        for i in range(len(self.X1_train)):
+            s = sign(self.W[0] + self.W[1] * self.X1_train[i] + self.W[2] * self.X2_train[i])
+            if s*self.Label_train[i] != 1:
+                misclassified += 1
+        return misclassified
 
     def accuracy_on_testing(self):
-        pass
+        # just number of misclassified data
+        misclassified = 0
+        for i in range(len(self.X1_test)):
+            s = sign(self.W[0] + self.W[1] * self.X1_test[i] + self.W[2] * self.X2_test[i])
+            if s * self.Label_test[i] != 1:
+                misclassified += 1
+        return misclassified
