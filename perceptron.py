@@ -46,16 +46,29 @@ class Perceptron:
                 self.Label_test.append(-1)
 
     def find_the_best_weights(self):
+        in_pocket = self.W
+        number_of_misclassified = len(self.X1_train)
         alpha = 0.1
         iteration_num = 0
         while iteration_num < 100:
             for i in range(len(self.X1_train)):
+                self.W = in_pocket
                 iteration_num += 1
                 s = sign(self.W[0] + self.W[1] * self.X1_train[i] + self.W[2] * self.X2_train[i])
                 if s * self.Label_train[i] != 1:
                     self.W[0] += alpha * self.Label_train[i]
                     self.W[1] += alpha * self.X1_train[i] * self.Label_train[i]
                     self.W[2] += alpha * self.X2_train[i] * self.Label_train[i]
+            n = 0
+            for j in range(len(self.X1_train)):
+                s = sign(self.W[0] + self.W[1] * self.X1_train[j] + self.W[2] * self.X2_train[j])
+                if s * self.Label_train[j] != 1:
+                    n += 1
+            if n <= number_of_misclassified:
+                number_of_misclassified = n
+                in_pocket = self.W
+
+        self.W = in_pocket
 
     def accuracy_on_training(self):
         # just number of misclassified data
