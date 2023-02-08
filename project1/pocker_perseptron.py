@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from numpy import linspace
-from perceptron import Perceptron
+from project1.perceptron import Perceptron
 
 
 if __name__ == '__main__':
